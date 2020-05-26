@@ -3,11 +3,16 @@ package fr.eni.filmotheque.dal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 
+import org.springframework.stereotype.Repository;
+
+import fr.eni.filmotheque.bll.MembreNonTrouveException;
 import fr.eni.filmotheque.bo.Membre;
 
+@Repository
 public class MembreDAOImpl implements MembreDAO {
 	@PersistenceContext
 	private EntityManager em;
@@ -42,7 +47,7 @@ public class MembreDAOImpl implements MembreDAO {
 	@Transactional
 	@Override
 	public List<Membre> findAll() {
-		return em.createQuery("select m from Membre m", Membre.class).getResultList();
+		return em.createQuery("select m from membre m", Membre.class).getResultList();
 	}
 
 	@Transactional
@@ -57,6 +62,16 @@ public class MembreDAOImpl implements MembreDAO {
 		Membre membre = findById(id);
 		delete(membre);
 
+	}
+
+	@Override
+	public Membre findByName(String name) throws MembreNonTrouveException {
+		try {
+			return em.createQuery("select m from Membre m where m.pseudo= :name", Membre.class)
+					.setParameter("name", name).getSingleResult();
+		} catch (NoResultException e) {
+			throw new MembreNonTrouveException();
+		}
 	}
 
 }

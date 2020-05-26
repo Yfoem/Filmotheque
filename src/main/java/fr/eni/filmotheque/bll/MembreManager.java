@@ -13,4 +13,6 @@ public interface MembreManager {
 
 	public List<Membre> findAllMembres();
 
+	public Membre findByName(String name) throws MembreNonTrouveException;
+
 }

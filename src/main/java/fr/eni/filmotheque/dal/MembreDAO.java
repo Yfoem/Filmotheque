@@ -2,6 +2,7 @@ package fr.eni.filmotheque.dal;
 
 import java.util.List;
 
+import fr.eni.filmotheque.bll.MembreNonTrouveException;
 import fr.eni.filmotheque.bo.Membre;
 
 public interface MembreDAO {
@@ -16,4 +17,6 @@ public interface MembreDAO {
 	public Membre findById(long id);
 
 	public List<Membre> findAll();
+
+	public Membre findByName(String name) throws MembreNonTrouveException;
 }
