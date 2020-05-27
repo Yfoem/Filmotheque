@@ -6,10 +6,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.eni.filmotheque.bll.ParticipantManager;
-import fr.eni.filmotheque.bll.ParticipantManagerImpl;
+
 import fr.eni.filmotheque.bo.Participant;
 
 @Controller
@@ -80,17 +79,45 @@ public class ParticipantController {
 	
 	
 	@RequestMapping(path="/supprimerParticipant", method=RequestMethod.GET)
-	public String suppression(@RequestParam(name="id") Long id, ModelMap model) {
+	public String suppression(@RequestParam(name="id") Long id) {
 		 
 		manager.supprimerParticipant(id);
 		return "redirect:/app/gestionParticipant";
 	}
 	
 	@RequestMapping(path="/modifierParticipant", method=RequestMethod.GET)
-	public String modification() {
-		 
-		
+	public String vueModification(@RequestParam(name="id") Long id, ModelMap model) {
+		participant=manager.selectParticipant(id);
+		model.addAttribute("participant", participant);
 		return "modifierParticipant";
+	}
+	
+	@RequestMapping(path="/modifierParticipant", method=RequestMethod.POST)
+	public String modification(@RequestParam(name="id") Long id,@RequestParam(name="nom") String nom,@RequestParam(name="prenom") String prenom,@RequestParam(name="naissance") String naissance,@RequestParam(name="mort") String mort, ModelMap model) {
+		System.out.println("ID " +id);
+		participant=manager.selectParticipant(id);
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        
+
+        try {
+
+            Date date1 = formatter.parse(naissance);
+            Date date2 = formatter.parse(mort); 
+            
+            participant.setDateDeNaissance(date1);
+            participant.setDateDeMort(date2);
+            System.out.println(formatter.format(date1));
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+		participant.setNom(nom);
+		participant.setPrenom(prenom);
+		manager.modifierParticipant(participant);
+		
+		
+		return "redirect:/app/gestionParticipant";
 	}
 	
 	
