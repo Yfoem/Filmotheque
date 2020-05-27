@@ -41,8 +41,8 @@ public class ParticipantDAOImpl implements ParticipantDAO {
 
 	@Override
 	public Participant getParticipant(Long id) {
-		em.find(Participant.class, id);
-		return null;
+		Participant participant = em.find(Participant.class, id);
+		return participant;
 	}
 
 	@Override
@@ -53,7 +53,8 @@ public class ParticipantDAOImpl implements ParticipantDAO {
 
 	@Override
 	public void delete(Long id) {
-		Participant participant = getParticipant(id);
+		Participant participant=getParticipant(id);
+	
 		delete(participant);
 		
 	}

@@ -81,11 +81,18 @@ public class ParticipantController {
 	
 	@RequestMapping(path="/supprimerParticipant", method=RequestMethod.GET)
 	public String suppression(@RequestParam(name="id") Long id, ModelMap model) {
+		 
 		manager.supprimerParticipant(id);
 		return "redirect:/app/gestionParticipant";
 	}
 	
-	 
+	@RequestMapping(path="/modifierParticipant", method=RequestMethod.GET)
+	public String modification() {
+		 
+		
+		return "modifierParticipant";
+	}
+	
 	
 	
 	
