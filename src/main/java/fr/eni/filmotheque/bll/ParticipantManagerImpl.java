@@ -2,19 +2,26 @@ package fr.eni.filmotheque.bll;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import fr.eni.filmotheque.bo.Participant;
 import fr.eni.filmotheque.dal.ParticipantDAO;
+import fr.eni.filmotheque.dal.ParticipantDAOImpl;
 
 @Service
 public class ParticipantManagerImpl implements ParticipantManager {
 	
 	@Autowired
-	private ParticipantDAO dao;
+	private ParticipantDAO  dao;
+	
+	public ParticipantManagerImpl(){
+		
+	}
 
-	@Override
+	@Transactional
 	public void ajouterParticipant(Participant participant) {
 		dao.insert(participant);
 		
