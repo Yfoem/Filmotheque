@@ -9,3 +9,5 @@ build
 /.settings
 /.classpath
 /.project
+/*.classpath
+.settings

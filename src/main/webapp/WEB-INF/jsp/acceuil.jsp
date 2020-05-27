@@ -63,7 +63,7 @@
 			  					<div class="film" id="<%=film.getId()%>" onclick="document.getElementById('filmForm<%=film.getId()%>').submit();">
 				  					<h5 ><strong><%=film.getTitre()%></strong></h5>
 				  					<p ><%=film.getCategorie().getLibelle()%></p>
-				  					<p>Année de sortie : <fmt:formatDate value="<%=film.getDate()%>" pattern="dd/MM/yyyy" /></p>
+				  					<p>Année de sortie : <fmt:formatDate value="<%=film.getAnnee()%>" pattern="dd/MM/yyyy" /></p>
 				  					<input type="hidden" id="idArticle" name="idArticle" value="<%=film.getId()%>">
 			  					</div>
 			  					</form>
