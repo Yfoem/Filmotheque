@@ -13,7 +13,7 @@ import fr.eni.filmotheque.bll.MembreNonTrouveException;
 import fr.eni.filmotheque.bo.Membre;
 
 @Controller
-@SessionAttributes("user")
+@SessionAttributes("sessionUtilisateur")
 public class MembreController {
 
 	@Autowired
@@ -31,7 +31,7 @@ public class MembreController {
 					model.addAttribute("error", "erreur mdp incorrect");
 					return "login";
 				}
-				model.addAttribute("user", membre);
+				model.addAttribute("sessionUtilisateur", membre);
 				System.out.println("connextion effecutée");
 				return "acceuil";
 			} catch (MembreNonTrouveException e) {
@@ -46,7 +46,7 @@ public class MembreController {
 	@RequestMapping(method = RequestMethod.GET, path = { "/Acceuil" })
 	public String Acceuil() {
 
-		return "login";
+		return "acceuil";
 	}
 
 }
