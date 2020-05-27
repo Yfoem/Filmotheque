@@ -1,14 +1,10 @@
 package fr.eni.filmotheque.bo;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Membre {
@@ -29,24 +25,12 @@ public class Membre {
 	@Column(name = "estCreateur", nullable = false)
 	private Boolean estCreateur;
 
-	@OneToMany
-	private List<Avis> avis;
-
 	public Membre() {
 
 		pseudo = null;
 		mdp = null;
 		email = null;
 		estCreateur = null;
-		avis = new ArrayList<>();
-	}
-
-	public List<Avis> getAvis() {
-		return avis;
-	}
-
-	public void setAvis(List<Avis> avis) {
-		this.avis = avis;
 	}
 
 	public Long getId() {

@@ -32,9 +32,9 @@ public class ParticipantManagerImpl implements ParticipantManager {
 		
 	}
 
-	@Override
+	@Transactional
 	public void modifierParticipant(Participant participant) {
-		// TODO Auto-generated method stub
+		dao.update(participant);
 		
 	}
 

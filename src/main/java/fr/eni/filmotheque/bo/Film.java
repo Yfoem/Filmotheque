@@ -1,14 +1,18 @@
 package fr.eni.filmotheque.bo;
 
-import java.sql.Date;
+import java.util.Collection;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "Film")
@@ -18,17 +22,21 @@ public class Film {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
-	@Column(name = "titre", nullable = false)
+	@Column(name = "titre", length = 75, nullable = false)
 	private String titre;
-	@Column(name = "annee", nullable = false)
+
+	@Column(name = "annee", nullable = true)
+	@Temporal(value = TemporalType.DATE)
 	private Date annee;
 
 	@ManyToOne
 	private Categorie categorie;
 
 	@ManyToOne
-	@Column(name = "realisateur", nullable = false)
 	private Participant realisteur;
+
+	@ManyToMany
+	private Collection<Participant> acteurs;
 
 	public Film() {
 
@@ -77,6 +85,14 @@ public class Film {
 
 	public void setCategorie(Categorie categorie) {
 		this.categorie = categorie;
+	}
+
+	public Participant getRealisteur() {
+		return realisteur;
+	}
+
+	public void setRealisteur(Participant realisteur) {
+		this.realisteur = realisteur;
 	}
 
 }
