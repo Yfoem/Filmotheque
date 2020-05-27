@@ -26,11 +26,11 @@ public class ParticipantController {
 	private ParticipantManager  manager;
 	
 	private Participant  participant=null;
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 	
 	@RequestMapping(path="/gestionParticipant", method=RequestMethod.GET)
 	public String afficherParticipants(ModelMap model) {
-//		participant=new Participant("Miller","Toad",new Date(),new Date());
-//		manager.ajouterParticipant(participant);
+
 		List<Participant> participant= new ArrayList<>();
 		participant=manager.selectAllParticipant();
 		model.addAttribute("participant", participant);
@@ -94,11 +94,9 @@ public class ParticipantController {
 	
 	@RequestMapping(path="/modifierParticipant", method=RequestMethod.POST)
 	public String modification(@RequestParam(name="id") Long id,@RequestParam(name="nom") String nom,@RequestParam(name="prenom") String prenom,@RequestParam(name="naissance") String naissance,@RequestParam(name="mort") String mort, ModelMap model) {
-		System.out.println("ID " +id);
+		
 		participant=manager.selectParticipant(id);
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        
-
+		
         try {
 
             Date date1 = formatter.parse(naissance);
@@ -106,7 +104,7 @@ public class ParticipantController {
             
             participant.setDateDeNaissance(date1);
             participant.setDateDeMort(date2);
-            System.out.println(formatter.format(date1));
+           
 
         } catch (ParseException e) {
             e.printStackTrace();
