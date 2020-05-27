@@ -18,7 +18,7 @@ public class Participant {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@Column(name="nom",length=30,nullable=false)
 	private String nom;
@@ -38,7 +38,7 @@ public class Participant {
 		 
 	}
 
-	public Participant(int id, String nom, String prenom, Date dateDeNaissance, Date dateDeMort) {
+	public Participant(Long id, String nom, String prenom, Date dateDeNaissance, Date dateDeMort) {
 	 
 		this.id = id;
 		this.nom = nom;
@@ -55,11 +55,11 @@ public class Participant {
 		this.dateDeMort = dateDeMort;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 

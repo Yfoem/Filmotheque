@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import fr.eni.filmotheque.bo.Participant;
 
+
 @Repository
 public class ParticipantDAOImpl implements ParticipantDAO {
 	
@@ -39,7 +40,7 @@ public class ParticipantDAOImpl implements ParticipantDAO {
 	}
 
 	@Override
-	public Participant getParticipant(int id) {
+	public Participant getParticipant(Long id) {
 		em.find(Participant.class, id);
 		return null;
 	}
@@ -47,14 +48,13 @@ public class ParticipantDAOImpl implements ParticipantDAO {
 	@Override
 	public List<Participant> getAllParticipant() {
 		 
-		return em.createQuery("SELECT p FROM  participant p", Participant.class).getResultList();
+		return em.createQuery("SELECT p FROM  Participant p", Participant.class).getResultList();
 	}
 
 	@Override
-	public void delete(int id) {
-		Participant p = new Participant();
-		p=this.getParticipant(id);
-		this.delete(p);
+	public void delete(Long id) {
+		Participant participant = getParticipant(id);
+		delete(participant);
 		
 	}
 

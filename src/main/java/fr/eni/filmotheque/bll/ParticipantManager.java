@@ -12,9 +12,11 @@ public interface ParticipantManager {
 	
 	void supprimerParticipant(Participant participant);
 	
+	void supprimerParticipant(Long id);
+	
 	List<Participant>selectAllParticipant();
 	
-	Participant selectParticipant(int id);
+	Participant selectParticipant(Long id);
 	
 ;
 }

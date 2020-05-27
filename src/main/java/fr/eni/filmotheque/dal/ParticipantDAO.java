@@ -12,9 +12,9 @@ public interface ParticipantDAO {
 	
 	void delete(Participant participant);
 	
-	void delete(int id);
+	void delete(Long id);
 	
-	Participant getParticipant(int id);
+	Participant getParticipant(Long id);
 	
 	List<Participant>getAllParticipant();
 	

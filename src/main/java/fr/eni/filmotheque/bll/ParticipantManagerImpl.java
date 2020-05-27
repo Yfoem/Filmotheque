@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import fr.eni.filmotheque.bo.Participant;
 import fr.eni.filmotheque.dal.ParticipantDAO;
 import fr.eni.filmotheque.dal.ParticipantDAOImpl;
+ 
 
 @Service
 public class ParticipantManagerImpl implements ParticipantManager {
@@ -23,7 +24,11 @@ public class ParticipantManagerImpl implements ParticipantManager {
 
 	@Transactional
 	public void ajouterParticipant(Participant participant) {
-		dao.insert(participant);
+		if(participant.getId()==null) {
+			dao.insert(participant);
+		}else {
+			dao.update(participant);
+		}
 		
 	}
 
@@ -33,9 +38,9 @@ public class ParticipantManagerImpl implements ParticipantManager {
 		
 	}
 
-	@Override
+	@Transactional
 	public void supprimerParticipant(Participant participant) {
-		// TODO Auto-generated method stub
+		dao.delete(participant);
 		
 	}
 
@@ -46,9 +51,18 @@ public class ParticipantManagerImpl implements ParticipantManager {
 	}
 
 	@Override
-	public Participant selectParticipant(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	public Participant selectParticipant(Long id) {
+		Participant participant = dao.getParticipant(id);
+		if(participant==null) {
+			//throw new TodoNonTrouveException();
+		}
+		return participant;
+	}
+
+	@Transactional
+	public void supprimerParticipant(Long id) {
+		dao.delete(id);
+		
 	}
 
 }
