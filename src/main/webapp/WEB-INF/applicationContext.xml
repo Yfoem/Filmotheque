@@ -16,11 +16,9 @@
 	<context:annotation-config />
 	
 	<context:component-scan
-<<<<<<< HEAD
+ 
 		base-package="fr.eni.filmotheque.ihm,fr.eni.filmotheque.bll,fr.eni.filmotheque.dal" />
-=======
-		base-package="fr.eni.filmotheque.ihm, fr.eni.filmotheque.bll, fr.eni.filmotheque.dal" />
->>>>>>> origin/Maxence
+ 
 
 	<bean id="viewResolver" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
 		<property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -29,12 +27,9 @@
 	</bean>
 	
 	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
+	 
 	
-<<<<<<< HEAD
-
-	
-=======
->>>>>>> origin/Maxence
+ 
 	<jpa:repositories base-package="fr.eni.filmotheque.dal" 
 						entity-manager-factory-ref="emf"/>
 	
@@ -71,11 +66,9 @@
 		
 		<property name="jpaProperties">
 			<props>
-<<<<<<< HEAD
+ 
   				<prop key="hibernate.hbm2ddl.auto">create</prop> 
-=======
-  				<prop key="hibernate.hbm2ddl.auto">update</prop> 
->>>>>>> origin/Maxence
+ 
 				<prop key="hibernate.enable_lazy_load_no_trans">true</prop>
 			</props>
 		</property>
@@ -87,10 +80,6 @@
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager"/>
-<<<<<<< HEAD
-=======
-	
-	
->>>>>>> origin/Maxence
+ 
 		
 </beans>
