@@ -3,7 +3,9 @@
   <display-name>Filmotheque</display-name>
 
   <welcome-file-list>
+ 
     <welcome-file>app/Acceuil</welcome-file>
+ 
   </welcome-file-list>
   
   <servlet>

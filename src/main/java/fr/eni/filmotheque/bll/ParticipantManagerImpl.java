@@ -1,0 +1,68 @@
+package fr.eni.filmotheque.bll;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import fr.eni.filmotheque.bo.Participant;
+import fr.eni.filmotheque.dal.ParticipantDAO;
+import fr.eni.filmotheque.dal.ParticipantDAOImpl;
+ 
+
+@Service
+public class ParticipantManagerImpl implements ParticipantManager {
+	
+	@Autowired
+	private ParticipantDAO  dao;
+	
+	public ParticipantManagerImpl(){
+		
+	}
+
+	@Transactional
+	public void ajouterParticipant(Participant participant) {
+		if(participant.getId()==null) {
+			dao.insert(participant);
+		}else {
+			dao.update(participant);
+		}
+		
+	}
+
+	@Override
+	public void modifierParticipant(Participant participant) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Transactional
+	public void supprimerParticipant(Participant participant) {
+		dao.delete(participant);
+		
+	}
+
+	@Override
+	public List<Participant> selectAllParticipant() {
+		
+		return dao.getAllParticipant();
+	}
+
+	@Override
+	public Participant selectParticipant(Long id) {
+		Participant participant = dao.getParticipant(id);
+		if(participant==null) {
+			//throw new TodoNonTrouveException();
+		}
+		return participant;
+	}
+
+	@Transactional
+	public void supprimerParticipant(Long id) {
+		dao.delete(id);
+		
+	}
+
+}
