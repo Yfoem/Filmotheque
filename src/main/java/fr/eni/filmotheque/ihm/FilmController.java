@@ -42,4 +42,21 @@ public class FilmController {
 		return "detailFilm";
 		
 	}
+	
+	@RequestMapping(path="/modifierFilm", method=RequestMethod.POST)
+	public String modifierFilm(@RequestParam(name="id") Long id, ModelMap model) {
+		
+		return null;
+	}
+		
+	@RequestMapping(path="/supprimerFilm", method=RequestMethod.POST)
+	public String supprimerFilm(@RequestParam(name="id") Long id, ModelMap model) {
+		return null;
+	}
+	
+	@RequestMapping(path="/ajouterFilm", method=RequestMethod.POST)
+	public String ajouterFilm(@RequestParam(name="id") Long id, ModelMap model) {
+		return null;
+		
+	}
 }
