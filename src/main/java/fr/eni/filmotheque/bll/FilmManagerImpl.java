@@ -18,7 +18,7 @@ public class FilmManagerImpl implements FilmManager{
 	@Autowired
 	private FilmDAO dao;
 
-	@Override
+	@Transactional
 	public void Ajouter(Film f) {
 		// TODO Auto-generated method stub
 		if(f.getId() == null) {
@@ -28,19 +28,19 @@ public class FilmManagerImpl implements FilmManager{
 		}
 	}
 
-	@Override
+	@Transactional
 	public void Supprimer(Film f) {
 		// TODO Auto-generated method stub
 		dao.Supprimer(f);
 	}
 
-	@Override
+	@Transactional
 	public void Supprimer(Long id) {
 		// TODO Auto-generated method stub
 		dao.Supprimer(id);
 	}
 
-	@Override
+	@Transactional
 	public void Modifier(Film f) {
 		// TODO Auto-generated method stub
 		dao.Modifier(f);

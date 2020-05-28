@@ -47,7 +47,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 	@Transactional
 	@Override
 	public List<Categorie> findAll() {
-		return em.createQuery("select c from categorie c", Categorie.class).getResultList();
+		return em.createQuery("select c from Categorie c", Categorie.class).getResultList();
 	}
 
 	@Transactional
