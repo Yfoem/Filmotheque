@@ -53,6 +53,10 @@
 			    	if(request.getSession().getAttribute("sessionUtilisateur") != null &&((Membre)request.getSession().getAttribute("sessionUtilisateur")).EstCreateur() == true ){
 			    %>
 			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/vueAjouterCategorie"><input class="btn btn-success" type="button" value="Gérer Catégories"/></a>
+			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/ajouterParticipant"><input class="btn btn-success" type="button" value="Gérer Participants"/></a>
+			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/ajouterFilm"><input class="btn btn-success" type="button" value="Gérer Films"/></a>
+			  			
+			  	
 			  	<% 
 			  		}
 		  	 	%>
@@ -65,12 +69,13 @@
 			  		if(listeFilm!=null && listeFilm.size()>0){
 			  			for (Film film : listeFilm){
 				  			%>	
-				  				<form id="filmForm<%=film.getId()%>"
-										action="" method="POST">
-			  					<div class="film" id="<%=film.getId()%>" onclick="document.getElementById('filmForm<%=film.getId()%>').submit();">
+				  			
+				  				<form id="<%=film.getId()%>"
+										action="<%=request.getServletContext().getContextPath()%>/app/detailFilm?id=<%=film.getId()%>" method="POST">
+			  					<div class="film" id="<%=film.getId()%>" onclick="document.getElementById('<%=film.getId()%>').submit();">
 				  					<h5 ><strong><%=film.getTitre()%></strong></h5>
-				  					<p ><%=film.getCategorie().getLibelle()%></p>
-				  					<p>Année de sortie : <fmt:formatDate value="<%=film.getAnnee()%>" pattern="dd/MM/yyyy" /></p>
+<%-- 				  					<p ><%=film.getCategorie().getLibelle()%></p> --%>
+<%-- 				  					<p>Année de sortie : <fmt:formatDate value="<%=film.getAnnee()%>" pattern="dd/MM/yyyy" /></p> --%>
 				  					<input type="hidden" id="idArticle" name="idArticle" value="<%=film.getId()%>">
 			  					</div>
 			  					</form>
