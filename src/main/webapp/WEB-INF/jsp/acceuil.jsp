@@ -34,7 +34,7 @@
 			    <%
 			    	if(request.getSession().getAttribute("sessionUtilisateur") == null){
 			    		%>
-			    			<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/login"><input class="btn btn-success" type="button" value="Se Connecter"/></a>
+			    			<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/login"><input class="btn btn-success" type="button" value="Se Connecter"/></a>
 			    		<%
 			    	}else{
 			    		%>

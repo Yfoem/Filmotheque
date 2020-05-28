@@ -33,17 +33,19 @@ public class ParticipantController {
 
 		List<Participant> participant= new ArrayList<>();
 		participant=manager.selectAllParticipant();
-		model.addAttribute("participant", participant);
+		model.addAttribute("participants", participant);
 		return "gestionParticipant";
 	}
 	
 	
 	@RequestMapping(path="/ajouterParticipant", method=RequestMethod.GET)
 	public String vueAjout(ModelMap model) {
-		
 		List<Participant> participant= new ArrayList<>();
-		model.addAttribute("participant", participant);
-		return "ajouterParticipant";
+		participant=manager.selectAllParticipant();
+		model.addAttribute("participants", participant);
+		
+		model.addAttribute("participant", null);
+		return "gestionParticipant";
 	}
 	
 	@RequestMapping(path="/ajouterParticipant", method=RequestMethod.POST)
@@ -87,9 +89,13 @@ public class ParticipantController {
 	
 	@RequestMapping(path="/modifierParticipant", method=RequestMethod.GET)
 	public String vueModification(@RequestParam(name="id") Long id, ModelMap model) {
+		List<Participant> participants= new ArrayList<>();
+		participants=manager.selectAllParticipant();
+		model.addAttribute("participants", participants);
+		
 		participant=manager.selectParticipant(id);
 		model.addAttribute("participant", participant);
-		return "modifierParticipant";
+		return "gestionParticipant";
 	}
 	
 	@RequestMapping(path="/modifierParticipant", method=RequestMethod.POST)
