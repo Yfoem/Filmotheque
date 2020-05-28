@@ -17,7 +17,7 @@
 <div style="float:right;margin-right:100px">
 <h4><a href="<%=request.getContextPath()%>/app/film">Films</a></h4>
 <h4><a href="<%=request.getContextPath()%>/app/categorie">Catégories</a></h4>
-<h4><a href="<%=request.getContextPath()%>/app/participants">Participants</a></h4>
+<h4><a href="<%=request.getContextPath()%>/app/gestionParticipant">Participants</a></h4>
 </div>
 
 <h1 class="text-center" style="margin-top:100px">Gestion des participants</h1>
