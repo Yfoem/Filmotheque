@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.eni.filmotheque.bll.ParticipantManager;
-
+import fr.eni.filmotheque.bll.ParticipantNonTrouveException;
 import fr.eni.filmotheque.bo.Participant;
 
 @Controller
@@ -81,9 +81,14 @@ public class ParticipantController {
 	
 	
 	@RequestMapping(path="/supprimerParticipant", method=RequestMethod.GET)
-	public String suppression(@RequestParam(name="id") Long id) {
+	public String suppression(@RequestParam(name="id") Long id, ModelMap model) {
 		 
-		manager.supprimerParticipant(id);
+		try {
+			manager.supprimerParticipant(id);
+		} catch (ParticipantNonTrouveException e) {
+			model.addAttribute("erreur","Le participant est inconnu");
+			return "gestionParticipant";
+		}
 		return "redirect:/app/gestionParticipant";
 	}
 	
@@ -93,15 +98,27 @@ public class ParticipantController {
 		participants=manager.selectAllParticipant();
 		model.addAttribute("participants", participants);
 		
-		participant=manager.selectParticipant(id);
+		try {
+			participant=manager.selectParticipant(id);
+		} catch (ParticipantNonTrouveException e) {
+			model.addAttribute("erreur","Le participant est inconnu");
+			return "gestionParticipant";
+		}
+		
 		model.addAttribute("participant", participant);
 		return "gestionParticipant";
 	}
 	
-	@RequestMapping(path="/modifierParticipant", method=RequestMethod.POST)
-	public String modification(@RequestParam(name="id") Long id,@RequestParam(name="nom") String nom,@RequestParam(name="prenom") String prenom,@RequestParam(name="naissance") String naissance,@RequestParam(name="mort") String mort, ModelMap model) {
+	@RequestMapping(path="/modifierParticipant", method=RequestMethod.POST) 
+	public String modification(@RequestParam(name="id") Long id,@RequestParam(name="nom") String nom,@RequestParam(name="prenom") 
+	String prenom,@RequestParam(name="naissance") String naissance,@RequestParam(name="mort") String mort, ModelMap model)throws ParticipantNonTrouveException {
 		
-		participant=manager.selectParticipant(id);
+		try {
+			participant=manager.selectParticipant(id);
+		} catch (ParticipantNonTrouveException e) {
+			model.addAttribute("erreur","Le participant est inconnu");
+			return "gestionParticipant";
+		}
 		
         try {
 

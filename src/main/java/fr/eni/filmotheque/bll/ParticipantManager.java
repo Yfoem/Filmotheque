@@ -10,13 +10,13 @@ public interface ParticipantManager {
 	
 	void modifierParticipant(Participant participant);
 	
-	void supprimerParticipant(Participant participant);
+	void supprimerParticipant(Participant participant) throws ParticipantNonTrouveException;
 	
-	void supprimerParticipant(Long id);
+	void supprimerParticipant(Long id) throws ParticipantNonTrouveException;
 	
 	List<Participant>selectAllParticipant();
 	
-	Participant selectParticipant(Long id);
+	Participant selectParticipant(Long id) throws ParticipantNonTrouveException;
 	
 ;
 }
