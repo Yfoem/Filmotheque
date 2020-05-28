@@ -27,9 +27,9 @@
 			<j:forEach items="${films}" var="f">
 				<tr>
 					<td>${f.getTitre()}</td>
-					<td>${f.getRealisteur().getNom()}</td>
+					<td>${f.getRealisteur().getNom()} ${f.getRealisteur().getPrenom()}</td>
 					<td>${f.getCategorie().getLibelle()}</td>
-					<td>${p.Annee() }</td>
+					<td>${f.getAnnee() }</td>
 					<td>
 						<a href="<%=request.getServletContext().getContextPath()%>/app/modifierFilm?id=${f.getId()}">Modifier</a>
 						<a href="<%=request.getServletContext().getContextPath()%>/app/supprimerFilm?id=${f.getId()}">Supprimer</a>

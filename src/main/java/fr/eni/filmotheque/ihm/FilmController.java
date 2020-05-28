@@ -45,8 +45,10 @@ public class FilmController {
 	
 	@RequestMapping(path="/modifierFilm", method=RequestMethod.POST)
 	public String modifierFilm(@RequestParam(name="id") Long id, ModelMap model) {
+		film = filmManager.SelectById(id);
+		filmManager.Modifier(film);
 		
-		return null;
+		return "gestionFilm";
 	}
 		
 	@RequestMapping(path="/supprimerFilm", method=RequestMethod.POST)
