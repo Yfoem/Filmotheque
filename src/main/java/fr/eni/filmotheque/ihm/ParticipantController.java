@@ -3,6 +3,7 @@ package fr.eni.filmotheque.ihm;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +34,7 @@ public class ParticipantController {
 
 		List<Participant> participant= new ArrayList<>();
 		participant=manager.selectAllParticipant();
+		participant.sort(Comparator.comparing(Participant::getNom));
 		model.addAttribute("participants", participant);
 		return "gestionParticipant";
 	}
@@ -40,10 +42,7 @@ public class ParticipantController {
 	
 	@RequestMapping(path="/ajouterParticipant", method=RequestMethod.GET)
 	public String vueAjout(ModelMap model) {
-		List<Participant> participant= new ArrayList<>();
-		participant=manager.selectAllParticipant();
-		model.addAttribute("participants", participant);
-		
+
 		model.addAttribute("participant", null);
 		return "gestionParticipant";
 	}
@@ -98,6 +97,7 @@ public class ParticipantController {
 	public String vueModification(@RequestParam(name="id") Long id, ModelMap model) {
 		List<Participant> participants= new ArrayList<>();
 		participants=manager.selectAllParticipant();
+		participants.sort(Comparator.comparing(Participant::getNom));
 		model.addAttribute("participants", participants);
 		
 		try {
