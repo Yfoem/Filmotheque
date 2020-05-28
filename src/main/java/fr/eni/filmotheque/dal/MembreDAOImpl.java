@@ -47,7 +47,7 @@ public class MembreDAOImpl implements MembreDAO {
 	@Transactional
 	@Override
 	public List<Membre> findAll() {
-		return em.createQuery("select m from membre m", Membre.class).getResultList();
+		return em.createQuery("select m from Membre m", Membre.class).getResultList();
 	}
 
 	@Transactional

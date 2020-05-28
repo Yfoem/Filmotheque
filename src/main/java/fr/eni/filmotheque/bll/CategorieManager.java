@@ -11,7 +11,7 @@ public interface CategorieManager {
 
 	public void supprimerCategorie(Long id) throws CategorieNonTrouveException;
 
-	public List<Categorie> findAllCategories();
+	public List<Categorie> findAllCategories() throws CategorieNonTrouveException;
 
 	public Categorie findByLabel(String label) throws CategorieNonTrouveException;
 

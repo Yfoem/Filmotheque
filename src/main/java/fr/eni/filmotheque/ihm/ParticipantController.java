@@ -7,9 +7,7 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,45 +15,57 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.eni.filmotheque.bll.ParticipantManager;
+
 import fr.eni.filmotheque.bll.ParticipantNonTrouveException;
+
 import fr.eni.filmotheque.bo.Participant;
 
 @Controller
 public class ParticipantController {
-	
+
 	@Autowired
-	private ParticipantManager  manager;
-	
-	private Participant  participant=null;
+	private ParticipantManager manager;
+
+	private Participant participant = null;
 	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-	
-	@RequestMapping(path="/gestionParticipant", method=RequestMethod.GET)
+
+	@RequestMapping(path = "/gestionParticipant", method = RequestMethod.GET)
 	public String afficherParticipants(ModelMap model) {
+
 
 		List<Participant> participant= new ArrayList<>();
 		participant=manager.selectAllParticipant();
+
 		participant.sort(Comparator.comparing(Participant::getNom));
 		model.addAttribute("participants", participant);
 		return "gestionParticipant";
 	}
-	
-	
-	@RequestMapping(path="/ajouterParticipant", method=RequestMethod.GET)
+
+	@RequestMapping(path = "/ajouterParticipant", method = RequestMethod.GET)
 	public String vueAjout(ModelMap model) {
+
+		List<Participant> participant = new ArrayList<>();
+		participant = manager.selectAllParticipant();
+		participant.sort(Comparator.comparing(Participant::getNom));
+		model.addAttribute("participants", participant);
+
 
 		model.addAttribute("participant", null);
 		return "gestionParticipant";
 	}
-	
-	@RequestMapping(path="/ajouterParticipant", method=RequestMethod.POST)
-	public String ajouterParticipants(@RequestParam(name="nom") String nom,@RequestParam(name="prenom") String prenom,
-			@RequestParam(name="naissance") String naissance,@RequestParam(name="mort")  String mort,ModelMap model) {
-		
-		participant=new Participant();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-         
 
-        try {
+
+	@RequestMapping(path = "/ajouterParticipant", method = RequestMethod.POST)
+	public String ajouterParticipants(@RequestParam(name = "nom") String nom,
+			@RequestParam(name = "prenom") String prenom, @RequestParam(name = "naissance") String naissance,
+			@RequestParam(name = "mort") String mort, ModelMap model) {
+		System.out.println("date : " + naissance);
+		participant = new Participant();
+
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+		try {
+
 
             Date date1 = formatter.parse(naissance);
             participant.setDateDeNaissance(date1);
@@ -64,22 +74,19 @@ public class ParticipantController {
                  participant.setDateDeMort(date2);
             }
            
-          
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 
 		participant.setNom(nom);
 		participant.setPrenom(prenom);
-		
+
 		manager.ajouterParticipant(participant);
-		
-		
-		 
+
 		return "redirect:/app/gestionParticipant";
 	}
-	
+
 	
 	@RequestMapping(path="/supprimerParticipant", method=RequestMethod.GET)
 	public String suppression(@RequestParam(name="id") Long id, ModelMap model) {
@@ -134,17 +141,20 @@ public class ParticipantController {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+manager.modifierParticipant(participant);
 
-		participant.setNom(nom);
-		participant.setPrenom(prenom);
-		manager.modifierParticipant(participant);
-		
-		
+return "redirect:/app/gestionParticipant";
+	}
+
+	@RequestMapping(path = "/supprimerParticipant", method = RequestMethod.GET)
+	public String suppression(@RequestParam(name = "id") Long id) throws ParticipantNonTrouveException {
+
+		manager.supprimerParticipant(id);
 		return "redirect:/app/gestionParticipant";
 	}
-	
-	
-	
-	
+
+
+
+
 
 }
