@@ -47,6 +47,7 @@ public class Participant {
 		this.dateDeMort = dateDeMort;
 	}
 	
+	
 	public Participant( String nom, String prenom, Date dateDeNaissance,Date dateDeMort) {
 		 
 		this.nom = nom;

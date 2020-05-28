@@ -51,7 +51,7 @@ public class ParticipantController {
 	@RequestMapping(path="/ajouterParticipant", method=RequestMethod.POST)
 	public String ajouterParticipants(@RequestParam(name="nom") String nom,@RequestParam(name="prenom") String prenom,
 			@RequestParam(name="naissance") String naissance,@RequestParam(name="mort")  String mort,ModelMap model) {
-		System.out.println("date : "+naissance);
+		
 		participant=new Participant();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
          
@@ -59,11 +59,13 @@ public class ParticipantController {
         try {
 
             Date date1 = formatter.parse(naissance);
-            Date date2 = formatter.parse(mort); 
-            
             participant.setDateDeNaissance(date1);
-            participant.setDateDeMort(date2);
-            System.out.println(formatter.format(date1));
+            if(mort!=null) {
+            	 Date date2 = formatter.parse(mort); 
+                 participant.setDateDeMort(date2);
+            }
+           
+          
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -122,13 +124,13 @@ public class ParticipantController {
 		
         try {
 
-            Date date1 = formatter.parse(naissance);
-            Date date2 = formatter.parse(mort); 
-            
-            participant.setDateDeNaissance(date1);
-            participant.setDateDeMort(date2);
-           
-
+        	  Date date1 = formatter.parse(naissance);
+              participant.setDateDeNaissance(date1);
+              if(mort!=null) {
+              	 Date date2 = formatter.parse(mort); 
+                   participant.setDateDeMort(date2);
+              }
+             
         } catch (ParseException e) {
             e.printStackTrace();
         }
