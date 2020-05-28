@@ -1,14 +1,15 @@
 package fr.eni.filmotheque.bll;
 
+import java.util.List;
 
-import java.util.List;	
-import javax.transaction.Transactional;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import fr.eni.filmotheque.bo.Film;
 import fr.eni.filmotheque.dal.FilmDAOImpl;
 
+public class FilmManagerImpl implements FilmManager {
 
-public class FilmManagerImpl implements FilmManager{
-	
+	@Autowired
 	private FilmDAOImpl dao;
 
 	@Override
@@ -20,13 +21,13 @@ public class FilmManagerImpl implements FilmManager{
 	@Override
 	public void enregistrerFilm(Film film) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void supprimerFilm(Long id) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -34,7 +35,5 @@ public class FilmManagerImpl implements FilmManager{
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-	
-	
+
 }

@@ -16,6 +16,7 @@ public class FilmDAOImpl implements FilmDAO {
 	@Override
 	public void add(Film f) {
 		em.persist(f);
-		
+		em.flush();
+
 	}
 }
