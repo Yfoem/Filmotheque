@@ -2,7 +2,6 @@ package fr.eni.filmotheque.bo;
 
 import java.util.Collection;
 import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,9 +17,11 @@ import javax.persistence.TemporalType;
 @Table(name = "Film")
 public class Film {
 
+	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 
 	@Column(name = "titre", length = 75, nullable = false)
 	private String titre;
@@ -55,11 +56,11 @@ public class Film {
 		this.categorie = cat;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -79,6 +80,7 @@ public class Film {
 		this.annee = annee;
 	}
 
+	
 	public Categorie getCategorie() {
 		return categorie;
 	}
@@ -95,4 +97,13 @@ public class Film {
 		this.realisteur = realisteur;
 	}
 
+	@Override
+	public String toString() {
+		return "Film [id=" + id + ", titre=" + titre + ", annee=" + annee + ", categorie=" + categorie + ", realisteur="
+				+ realisteur + ", acteurs=" + acteurs + "]";
+	}
+
+	
+
+	
 }

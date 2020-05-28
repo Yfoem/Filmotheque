@@ -1,22 +1,45 @@
 package fr.eni.filmotheque.ihm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.eni.filmotheque.bll.FilmManager;
+import fr.eni.filmotheque.bo.Film;
+import fr.eni.filmotheque.bo.Participant;
 import fr.eni.filmotheque.dal.FilmDAO;
 
 @Controller
 public class FilmController {
 
 	@Autowired
-	private FilmDAO dao;
+	FilmManager filmManager;
+	
+	List<Film> films = new ArrayList<>();
+	Film film = new Film();
 
-	@RequestMapping(method = RequestMethod.GET, path = { "/", "/action" })
-	public void action() {
-		/*
-		 * Film f = new Film("Les chats",2017); dao.add(f);
-		 */
+	@RequestMapping(path="/gestionFilms", method=RequestMethod.GET)
+	public String afficherFilms(ModelMap model) {
+
+		films = filmManager.SelectAll();
+		model.addAttribute("films", films);
+		
+		return "gestionFilms";
+	}
+	
+	@RequestMapping(path="/detailFilm", method=RequestMethod.POST)
+	public String detailFilm(@RequestParam(name="id") Long id, ModelMap model) {
+		
+		film = filmManager.SelectById(id);
+		model.addAttribute("film", film);
+		
+		return "detailFilm";
+		
 	}
 }

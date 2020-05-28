@@ -1,5 +1,8 @@
 package fr.eni.filmotheque.ihm;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -8,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import fr.eni.filmotheque.bll.FilmManager;
 import fr.eni.filmotheque.bll.MembreManager;
 import fr.eni.filmotheque.bll.MembreNonTrouveException;
+import fr.eni.filmotheque.bo.Film;
 import fr.eni.filmotheque.bo.Membre;
 
 @Controller
@@ -18,6 +23,9 @@ public class MembreController {
 
 	@Autowired
 	private MembreManager membreMger;
+	
+	@Autowired
+	private FilmManager filmManager;
 
 	@SuppressWarnings("finally")
 	@RequestMapping(method = RequestMethod.POST, path = { "/login" })
@@ -44,8 +52,15 @@ public class MembreController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, path = { "/Acceuil" })
-	public String Acceuil() {
-
+	public String Acceuil(ModelMap map) {
+		
+		List<Film> films = new ArrayList<>();
+		
+		
+		films = filmManager.SelectAll();
+		
+		map.addAttribute("listeFilms",films);
+		
 		return "acceuil";
 	}
 

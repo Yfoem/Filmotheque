@@ -7,11 +7,10 @@ import fr.eni.filmotheque.bo.Film;
 
 public interface FilmManager {
 	
-	public Film findById(  long id);
-
-	public void enregistrerFilm( Film film)  ;
-
-	public void supprimerFilm( Long id);
-	
-	public List<Film> findAllFilm();
+	public void Ajouter(Film f);
+	public void Supprimer(Film f);
+	public void Supprimer(Long id);
+	public void Modifier(Film f);
+	public Film SelectById(Long id);
+	public List<Film> SelectAll();
 }
