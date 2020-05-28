@@ -1,7 +1,9 @@
 package fr.eni.filmotheque.bo;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +16,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name = "Film")
+@Table(name = "Films")
 public class Film {
 
 	
@@ -37,20 +39,23 @@ public class Film {
 	private Participant realisteur;
 
 	@ManyToMany
-	private Collection<Participant> acteurs;
+	private List<Participant> acteurs;
 
 	public Film() {
+
+		acteurs = new ArrayList<Participant>();
 
 	}
 
 	public Film(String titre, Date annee) {
 
+		this();
 		this.titre = titre;
 		this.annee = annee;
 	}
 
 	public Film(String titre, Date annee, Categorie cat) {
-
+		this();
 		this.titre = titre;
 		this.annee = annee;
 		this.categorie = cat;
@@ -102,6 +107,11 @@ public class Film {
 		return "Film [id=" + id + ", titre=" + titre + ", annee=" + annee + ", categorie=" + categorie + ", realisteur="
 				+ realisteur + ", acteurs=" + acteurs + "]";
 	}
+
+	public List<Participant> getActeurs() {
+		return acteurs;
+	}
+
 
 	
 

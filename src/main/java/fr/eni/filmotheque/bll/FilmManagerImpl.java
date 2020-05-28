@@ -1,29 +1,26 @@
 package fr.eni.filmotheque.bll;
 
+import java.util.List;
 
-import java.util.List;	
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import fr.eni.filmotheque.bo.Film;
 import fr.eni.filmotheque.dal.FilmDAO;
-import fr.eni.filmotheque.dal.FilmDAOImpl;
 
 @Service
-public class FilmManagerImpl implements FilmManager{
-	
+public class FilmManagerImpl implements FilmManager {
 	@Autowired
 	private FilmDAO dao;
 
 	@Transactional
 	public void Ajouter(Film f) {
 		// TODO Auto-generated method stub
-		if(f.getId() == null) {
+		if (f.getId() == null) {
 			dao.Ajouter(f);
-		}else {
+		} else {
 			dao.Modifier(f);
 		}
 	}
@@ -49,7 +46,7 @@ public class FilmManagerImpl implements FilmManager{
 	@Override
 	public Film SelectById(Long id) {
 		// TODO Auto-generated method stub
-		
+
 		return dao.SelectById(id);
 	}
 
@@ -58,10 +55,5 @@ public class FilmManagerImpl implements FilmManager{
 		// TODO Auto-generated method stub
 		return dao.SelectAll();
 	}
-	
-	
-	
-	
-	
-	
+
 }

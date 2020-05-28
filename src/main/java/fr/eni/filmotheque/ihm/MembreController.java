@@ -48,6 +48,13 @@ public class MembreController {
 			}
 
 		}
+		model.addAttribute("error", "erreur au moins un champ est vide");
+		return "login";
+	}
+
+	@RequestMapping(method = RequestMethod.GET, path = { "/login" })
+	public String login() {
+
 		return "login";
 	}
 

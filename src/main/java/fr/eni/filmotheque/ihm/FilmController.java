@@ -42,7 +42,7 @@ public class FilmController {
 	Participant participant = new Participant();
 
 	@RequestMapping(path="/gestionFilms", method=RequestMethod.GET)
-	public String afficherFilms(ModelMap model) {
+	public String afficherFilms(ModelMap model) throws CategorieNonTrouveException {
 		
 		participants=participantManager.selectAllParticipant();
 		model.addAttribute("listeParticipants", participants);
@@ -67,7 +67,7 @@ public class FilmController {
 	}
 	
 	@RequestMapping(path="/modifierFilm", method=RequestMethod.GET)
-	public String vueModifierFilm(@RequestParam(name="id") Long id, ModelMap model) {
+	public String vueModifierFilm(@RequestParam(name="id") Long id, ModelMap model) throws CategorieNonTrouveException {
 		
 		films = filmManager.SelectAll();
 		model.addAttribute("films", films);

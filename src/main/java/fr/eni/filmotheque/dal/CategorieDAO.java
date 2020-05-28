@@ -16,7 +16,7 @@ public interface CategorieDAO {
 
 	public Categorie findById(long id);
 
-	public List<Categorie> findAll();
+	public List<Categorie> findAll() throws CategorieNonTrouveException;
 
 	public Categorie findByLabel(String name) throws CategorieNonTrouveException;
 }

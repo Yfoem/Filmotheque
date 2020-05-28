@@ -20,6 +20,11 @@ public class Categorie {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Categorie(Long i, String label) {
+		this.id = i;
+		this.libelle = label;
+	}
+
 	public Long getId() {
 		return id;
 	}
