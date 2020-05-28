@@ -4,7 +4,6 @@
 <%@page import="java.util.List"%>
 <%@page import="fr.eni.filmotheque.bo.Film"%>
 <%@page import="fr.eni.filmotheque.bo.Categorie"%>
-<%@page import="fr.eni.filmotheque.bo.Membre"%>
 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
@@ -20,6 +19,7 @@
 		%>
 	</head>
 	<body>
+		<!-- <h1>${sessionScope.sessionUtilisateur.prenom} ? Bienvenue, ${sessionScope.sessionUtilisateur.prenom} :  </h1> -->
 		<div class="container-fluid header">
 			<div class="row header-text" onclick="">
 			    <div class="col">
@@ -34,12 +34,12 @@
 			    <%
 			    	if(request.getSession().getAttribute("sessionUtilisateur") == null){
 			    		%>
-			    			<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/login"><input class="btn btn-success" type="button" value="Se Connecter"/></a>
+			    			<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/login"><input class="btn btn-success" type="button" value="Se Connecter"/></a>
 			    		<%
 			    	}else{
 			    		%>
-			    			<h3> <%=((Membre)request.getSession().getAttribute("sessionUtilisateur")).getPseudo()%></h3>
-			    			<a style="margin-left: 10px" href="<%=request.getContextPath()%>/app/Deconnexion"><input class="btn btn-danger" type="button" value="Déconnexion"/></a>
+			    			<img src="img/user.svg" class="user-image"/>
+			    			<a style="margin-left: 10px" href="<%=request.getContextPath()%>/Deconnexion"><input class="btn btn-danger" type="button" value="Déconnexion"/></a>
 			    		<%
 			    	}
 			    %>
@@ -49,13 +49,6 @@
 		  	<br/>
 		  	<br/>
 		  	<br/>
-		  	 	<%
-			    	if(request.getSession().getAttribute("sessionUtilisateur") != null &&((Membre)request.getSession().getAttribute("sessionUtilisateur")).EstCreateur() == true ){
-			    %>
-			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/vueAjouterCategorie"><input class="btn btn-success" type="button" value="Gérer Catégories"/></a>
-			  	<% 
-			  		}
-		  	 	%>
 		  	<div class="row title-section" >
 		  		<h1>Liste des Films</h1>
 		  	</div>

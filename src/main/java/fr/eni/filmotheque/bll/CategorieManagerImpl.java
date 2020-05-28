@@ -44,7 +44,7 @@ public class CategorieManagerImpl implements CategorieManager {
 	}
 
 	@Override
-	public List<Categorie> findAllCategories() {
+	public List<Categorie> findAllCategories() throws CategorieNonTrouveException {
 		return dao.findAll();
 	}
 
