@@ -1,31 +1,61 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@page import="fr.eni.filmotheque.bo.Membre"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Détail</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="css/accueil.css">
+<meta charset="ISO-8859-1">
+ 
+<title>DÃ©tail</title>
+
+
 </head>
 <body>
+<div class="container-fluid header">
+			<div class="row header-text" onclick="">
+			    <div class="col">
 
-<h1 class="text-center">Détail du film ${film.getTitre()}</h1>
+			    	<h2><a class="noLink" href="<%=request.getContextPath()%>">ENI-FilmothÃ¨que</a></h2>
+
+
+			    </div>
+			    <div class="col-6">
+			    </div>
+			    <div class="col login-section">
+			    <%
+			    	if(request.getSession().getAttribute("sessionUtilisateur") == null){
+			    		%>
+			    			<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/login"><input class="btn btn-success" type="button" value="Se Connecter"/></a>
+			    		<%
+			    	}else{
+			    		%>
+			    			<h3> <%=((Membre)request.getSession().getAttribute("sessionUtilisateur")).getPseudo()%></h3>
+			    		<%
+			    	}
+			    %>
+			      
+			    </div>
+		  	</div>
+		  	<br/>
+		  	<br/>
+		  	<br/>
+
+<h1 class="text-center">DÃ©tail du film ${film.getTitre()}</h1>
 <div class="mx-auto" style="border:solid;width:400px;margin-top:80px" >
 			Titre : ${film.getTitre()}<br>
 			
-			Réalisateur : ${film.getRealisteur().getNom()} ${film.getRealisteur().getPrenom()}<br> 
-			Catégorie : ${film.getCategorie().getLibelle()}<br>
+			RÃ©alisateur : ${film.getRealisteur().getNom()} ${film.getRealisteur().getPrenom()}<br> 
+			CatÃ©gorie : ${film.getCategorie().getLibelle()}<br>
 			Date de sortie: ${film.getAnnee()}
-			<div class="mx-auto" style="width:100px;margin-top:40px">
-			<a href="<%=request.getServletContext().getContextPath() %>/app/retour"><button>Retour</button></a>
-			</div>
+			
 			
 	
 	
 </div>
 		
 			
-			
+
 </body>
 </html>

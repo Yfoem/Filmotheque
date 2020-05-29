@@ -39,7 +39,6 @@
 			    	}else{
 			    		%>
 			    			<h3> <%=((Membre)request.getSession().getAttribute("sessionUtilisateur")).getPseudo()%></h3>
-			    			<a style="margin-left: 10px" href="<%=request.getContextPath()%>/app/Deconnexion"><input class="btn btn-danger" type="button" value="Déconnexion"/></a>
 			    		<%
 			    	}
 			    %>
@@ -53,7 +52,9 @@
 			    	if(request.getSession().getAttribute("sessionUtilisateur") != null &&((Membre)request.getSession().getAttribute("sessionUtilisateur")).EstCreateur() == true ){
 			    %>
 			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/vueAjouterCategorie"><input class="btn btn-success" type="button" value="Gérer Catégories"/></a>
+
 			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/gestionParticipant"><input class="btn btn-success" type="button" value="Gérer Participants"/></a>
+
 			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/gestionFilms"><input class="btn btn-success" type="button" value="Gérer Films"/></a>
 			  			
 			  	
@@ -107,7 +108,7 @@
 				  				<form id="<%=film.getId()%>"
 										action="<%=request.getServletContext().getContextPath()%>/app/detailFilm?id=<%=film.getId()%>" method="POST">
 			  					<div class="film" id="<%=film.getId()%>" onclick="document.getElementById('<%=film.getId()%>').submit();">
-				  					<h5 ><strong><%=film.getTitre()%></strong></h5>
+				  					<h5 style="color:#E3AC0D"><strong><%=film.getTitre()%></strong></h5>
 <%-- 				  					<p ><%=film.getCategorie().getLibelle()%></p> --%>
 <%-- 				  					<p>Année de sortie : <fmt:formatDate value="<%=film.getAnnee()%>" pattern="dd/MM/yyyy" /></p> --%>
 				  					<input type="hidden" id="idArticle" name="idArticle" value="<%=film.getId()%>">
