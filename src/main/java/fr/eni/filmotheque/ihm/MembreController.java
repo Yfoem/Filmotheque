@@ -41,6 +41,14 @@ public class MembreController {
 				}
 				model.addAttribute("sessionUtilisateur", membre);
 				System.out.println("connextion effecutée");
+				List<Film> films = new ArrayList<>();
+				
+				
+				films = filmManager.SelectAll();
+				
+				model.addAttribute("listeFilms",films);
+				
+				model.addAttribute("error", "erreur au moins un champ est vide");
 				return "acceuil";
 			} catch (MembreNonTrouveException e) {
 				model.addAttribute("error", "erreur pas de compte trouvé");
@@ -48,7 +56,8 @@ public class MembreController {
 			}
 
 		}
-		model.addAttribute("error", "erreur au moins un champ est vide");
+		
+
 		return "login";
 	}
 
@@ -69,6 +78,13 @@ public class MembreController {
 		map.addAttribute("listeFilms",films);
 		
 		return "acceuil";
+	}
+	
+	@RequestMapping(path="/retour", method=RequestMethod.GET)
+	public String retour() {
+		
+		
+		return "redirect:/app/acceuil";
 	}
 
 }

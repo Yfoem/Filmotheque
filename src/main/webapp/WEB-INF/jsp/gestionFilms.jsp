@@ -12,8 +12,46 @@
 	<head>
 		<meta charset="ISO-8859-1">
 		<title>Gestion Films</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		
+		<style type="text/css">
+		.multiselect {
+  width: 200px;
+}
+
+.selectBox {
+  position: relative;
+}
+
+.selectBox select {
+  width: 100%;
+  font-weight: bold;
+}
+
+.overSelect {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+#checkboxes {
+  display: none;
+  border: 1px #dadada solid;
+}
+
+#checkboxes label {
+  display: block;
+}
+
+#checkboxes label:hover {
+  background-color: #1e90ff;
+}
+		</style>
 	</head>
 	<body>
+	
 		<h1>Filmotheque</h1>
 		<h2>Gestion Films</h2>
 		
@@ -29,10 +67,10 @@
 		
 		<form  action="<%=request.getServletContext().getContextPath()%>/app/ajouterFilm" method="POST">
 			 
-			<label>Titre :</label>
+			<label>Titre:</label>
 		    <input type="text" name="titre" /><br>
 		    
-		    <label>Année :</label>
+		    <label>Ann�e:</label>
 		    <input type="date" name="annee" /><br>
 		    
 		    <label>Categorie</label><br>
@@ -56,6 +94,17 @@
 				<%}%>
 			
 			</select><br>
+			
+			<label>Acteurs:</label><br>
+			<select id="acteur" name="Acteur" >
+			<%
+			  			for (Participant participant : participants){
+			%>	
+			<option value=<%=participant.getId()%> selected="selected"><%=participant.getNom()%> <%=participant.getPrenom()%></option>
+				<%}%>
+			
+			</select><br>
+			
 			<input type="submit" value="Ajouter">
 			
 			</form>
@@ -69,10 +118,10 @@
 		
 		<form  action="<%=request.getServletContext().getContextPath()%>/app/modifierFilm?id=<%=film1.getId() %>" method="POST">
 			 
-				<label>Titre :</label>
-		    <input type="text" name="titre" value=<%=film1.getTitre() %>/><br>
+				<label>Titre:</label>
+		    <input type="text" name="titre" value=<%=film1.getTitre() %>><br>
 		    
-		    <label>Année :</label>
+		    <label>Ann�e:</label>
 		    <input type="date" name="annee" value="<%=film1.getAnnee() %>"/><br>
 		    
 		    <label>Categorie : <%=film1.getCategorie().getLibelle() %></label>
@@ -109,12 +158,12 @@
 	
 		<a href="<%=request.getServletContext().getContextPath()%>/app/ajouterFilm">Ajouter Film</a>
 			
-		<table>
+		<table class="table table-dark">
 			<tr>
 				<th>Titre</th>
 				<th>Réalisateur</th>
 				<th>Catégorie</th>
-				<th>Année sortie</th>
+				<th>Date de sortie</th>
 				<th>Actions</th>
 			
 			</tr>
@@ -133,5 +182,9 @@
 			</j:forEach>
 		
 		</table>
+		
+		
 	</body>
+	
+
 </html>

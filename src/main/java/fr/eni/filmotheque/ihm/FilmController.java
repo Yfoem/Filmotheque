@@ -19,6 +19,7 @@ import fr.eni.filmotheque.bll.CategorieManager;
 import fr.eni.filmotheque.bll.CategorieNonTrouveException;
 import fr.eni.filmotheque.bll.FilmManager;
 import fr.eni.filmotheque.bll.ParticipantManager;
+import fr.eni.filmotheque.bll.ParticipantNonTrouveException;
 import fr.eni.filmotheque.bo.Categorie;
 import fr.eni.filmotheque.bo.Film;
 import fr.eni.filmotheque.bo.Participant;
@@ -62,7 +63,7 @@ public class FilmController {
 		film = filmManager.SelectById(id);
 		model.addAttribute("film", film);
 		
-		return "detailFilms";
+		return "detailFilm";
 		
 	}
 	
@@ -83,7 +84,7 @@ public class FilmController {
 	}
 	
 	@RequestMapping(path="/modifierFilm", method=RequestMethod.POST)
-	public String modifierFilm(@RequestParam(name="titre") String titre,@RequestParam(name="categorie") Long categorie1,@RequestParam(name="realisateur") Long realisateur, @RequestParam(name="annee") String annee,@RequestParam(name="id") Long id, ModelMap model) throws CategorieNonTrouveException {
+	public String modifierFilm(@RequestParam(name="titre") String titre,@RequestParam(name="categorie") Long categorie1,@RequestParam(name="realisateur") Long realisateur, @RequestParam(name="annee") String annee,@RequestParam(name="id") Long id, ModelMap model) throws CategorieNonTrouveException, ParticipantNonTrouveException {
 		
 		
 		participants=participantManager.selectAllParticipant();
@@ -118,8 +119,15 @@ public class FilmController {
 		return "redirect:/app/gestionFilms";
 	}
 	
+	@RequestMapping(path="/retour", method=RequestMethod.GET)
+	public String retour() {
+		
+		
+		return "acceuil";
+	}
+	
 	@RequestMapping(path="/ajouterFilm", method=RequestMethod.POST)
-	public String ajouterFilm(@RequestParam(name="titre") String titre,@RequestParam(name="categorie") Long categorie1,@RequestParam(name="realisateur") Long realisateur, @RequestParam(name="annee") String annee, ModelMap model) throws CategorieNonTrouveException {
+	public String ajouterFilm(@RequestParam(name="titre") String titre,@RequestParam(name="categorie") Long categorie1,@RequestParam(name="realisateur") Long realisateur, @RequestParam(name="annee") String annee, ModelMap model) throws CategorieNonTrouveException, ParticipantNonTrouveException {
 		
 		participants=participantManager.selectAllParticipant();
 		model.addAttribute("listeParticipants", participants);
@@ -148,4 +156,7 @@ public class FilmController {
 		return "redirect:/app/gestionFilms";
 		
 	}
+	
+	
+	
 }

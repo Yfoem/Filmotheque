@@ -146,12 +146,7 @@ manager.modifierParticipant(participant);
 return "redirect:/app/gestionParticipant";
 	}
 
-	@RequestMapping(path = "/supprimerParticipant", method = RequestMethod.GET)
-	public String suppression(@RequestParam(name = "id") Long id) throws ParticipantNonTrouveException {
 
-		manager.supprimerParticipant(id);
-		return "redirect:/app/gestionParticipant";
-	}
 
 
 
