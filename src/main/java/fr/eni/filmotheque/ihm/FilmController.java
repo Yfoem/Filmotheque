@@ -62,7 +62,7 @@ public class FilmController {
 		film = filmManager.SelectById(id);
 		model.addAttribute("film", film);
 		
-		return "detailFilms";
+		return "detailFilm";
 		
 	}
 	

@@ -1,19 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Détail</title>
+<meta charset="UTF-8">
+<title>DÃ©tail</title>
 </head>
 <body>
 
 			<h2>${film.getTitre()}</h2>
 			<div>
-			Réalisateur : ${film.getRealisteur().getNom()}
+			RÃ©alisateur : ${film.getRealisteur().getNom()}
 			Acteurs : 
-			Cathégorie : ${film.getCategorie().getLibelle()}
-			Année : ${film.getAnnee()}
+			CathÃ©gorie : ${film.getCategorie().getLibelle()}
+			AnnÃ©e : ${film.getAnnee()}
 			</div>
 			
 			<a href="">Avis</a>
