@@ -39,7 +39,7 @@ public class ParticipantManagerImpl implements ParticipantManager {
 	}
 
 	@Transactional
-	public void supprimerParticipant(Participant participant) {
+	public void supprimerParticipant(Participant participant) throws ParticipantNonTrouveException {
 		dao.delete(participant);
 		
 	}
@@ -51,16 +51,16 @@ public class ParticipantManagerImpl implements ParticipantManager {
 	}
 
 	@Override
-	public Participant selectParticipant(Long id) {
+	public Participant selectParticipant(Long id) throws ParticipantNonTrouveException {
 		Participant participant = dao.getParticipant(id);
 		if(participant==null) {
-			//throw new TodoNonTrouveException();
+			throw new ParticipantNonTrouveException();
 		}
 		return participant;
 	}
 
 	@Transactional
-	public void supprimerParticipant(Long id) {
+	public void supprimerParticipant(Long id) throws ParticipantNonTrouveException {
 		dao.delete(id);
 		
 	}
