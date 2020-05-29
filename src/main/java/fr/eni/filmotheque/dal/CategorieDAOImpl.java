@@ -46,6 +46,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 
 	@Transactional
 	@Override
+
 	public List<Categorie> findAll() throws CategorieNonTrouveException {
 
 		try {
@@ -53,6 +54,7 @@ public class CategorieDAOImpl implements CategorieDAO {
 		} catch (NoResultException e) {
 			throw new CategorieNonTrouveException();
 		}
+
 
 	}
 

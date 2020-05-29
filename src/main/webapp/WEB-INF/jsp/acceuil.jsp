@@ -54,7 +54,7 @@
 			    %>
 			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/vueAjouterCategorie"><input class="btn btn-success" type="button" value="Gérer Catégories"/></a>
 			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/ajouterParticipant"><input class="btn btn-success" type="button" value="Gérer Participants"/></a>
-			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/ajouterFilm"><input class="btn btn-success" type="button" value="Gérer Films"/></a>
+			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/gestionFilms"><input class="btn btn-success" type="button" value="Gérer Films"/></a>
 			  			
 			  	
 			  	<% 
