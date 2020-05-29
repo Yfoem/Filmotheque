@@ -7,9 +7,13 @@
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="css/accueil.css">
+
 <meta charset="UTF-8">
 
+
 <title>Détail</title>
+
+
 </head>
 <body>
 <div class="container-fluid header">
@@ -41,14 +45,20 @@
 		  	<br/>
 		  	<br/>
 
-			<h2>${film.getTitre()}</h2>
-			<div>
-			Réalisateur : ${film.getRealisteur().getNom()}
-			Acteurs : 
-			Cathégorie : ${film.getCategorie().getLibelle()}
-			Année : ${film.getAnnee()}
-			</div>
+<h1 class="text-center">Détail du film ${film.getTitre()}</h1>
+<div class="mx-auto" style="border:solid;width:400px;margin-top:80px" >
+			Titre : ${film.getTitre()}<br>
 			
-			</div>
+			Réalisateur : ${film.getRealisteur().getNom()} ${film.getRealisteur().getPrenom()}<br> 
+			Catégorie : ${film.getCategorie().getLibelle()}<br>
+			Date de sortie: ${film.getAnnee()}
+			
+			
+	
+	
+</div>
+		
+			
+
 </body>
 </html>

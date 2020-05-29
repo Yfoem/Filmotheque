@@ -53,25 +53,61 @@
 			    	if(request.getSession().getAttribute("sessionUtilisateur") != null &&((Membre)request.getSession().getAttribute("sessionUtilisateur")).EstCreateur() == true ){
 			    %>
 
-			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/vueAjouterCategorie"><input class="btn btn-success" type="button" value="G�rer Cat�gories"/></a>
-			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/gestionParticipant"><input class="btn btn-success" type="button" value="G�rer Participants"/></a>
-			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/gestionFilms"><input class="btn btn-success" type="button" value="G�rer Films"/></a>
+			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/vueAjouterCategorie"><input class="btn btn-success" type="button" value="Gérer Catégories"/></a>
+
+			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/gestionParticipant"><input class="btn btn-success" type="button" value="Gérer Participants"/></a>
+
+			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/gestionFilms"><input class="btn btn-success" type="button" value="Gérer Films"/></a>
 
 			  			
 			  	
+			  		<div class="row title-section" >
+		  		<h1>Liste des Films</h1>
+		  	
+		  	</div>
+		  	<div class="row films-section">
+		  	
+			  	<%
+			  	List<Film> listeFilm = (List<Film>) request.getAttribute("listeFilms");
+			  		if(listeFilm!=null && listeFilm.size()>0){%>
+			  			<ul class="list-group" style="margin:100px">
+			  			<% for (Film film : listeFilm){
+				  			%>	
+				  			<li class="list-group-item bg-light" style="padding:40px" >
+				  				<form id="<%=film.getId()%>"
+										action="<%=request.getServletContext().getContextPath()%>/app/detailFilm?id=<%=film.getId()%>" method="POST">
+			  					<div class="film" id="<%=film.getId()%>" onclick="document.getElementById('<%=film.getId()%>').submit();">
+				  					<h5 ><strong><%=film.getTitre()%></strong></h5>
+<%-- 				  					<p ><%=film.getCategorie().getLibelle()%></p> --%>
+<%-- 				  					<p>Ann�e de sortie : <fmt:formatDate value="<%=film.getAnnee()%>" pattern="dd/MM/yyyy" /></p> --%>
+				  					<input type="hidden" id="idArticle" name="idArticle" value="<%=film.getId()%>">
+			  					</div>
+			  					</form>
+			  					</li>
+				  			<%
+				  		}
+			  			%>
+			  			</ul>
+			  	<% 	}
+				%>
+		  	</div>
+		</div>
 			  	<% 
-			  		}
+			  		}else{
 		  	 	%>
+		  	 	
+		  	 	
 		  	<div class="row title-section" >
 		  		<h1>Liste des Films</h1>
 		  	</div>
 		  	<div class="row films-section">
 			  	<%
 			  	List<Film> listeFilm = (List<Film>) request.getAttribute("listeFilms");
-			  		if(listeFilm!=null && listeFilm.size()>0){
-			  			for (Film film : listeFilm){
+			  		if(listeFilm!=null && listeFilm.size()>0){%>
+			  			<ul class="list-group" style="margin:100px">
+			  			<% for (Film film : listeFilm){
 				  			%>	
-				  			
+				  			<li class="list-group-item bg-light" style="padding:40px" >
 				  				<form id="<%=film.getId()%>"
 										action="<%=request.getServletContext().getContextPath()%>/app/detailFilm?id=<%=film.getId()%>" method="POST">
 			  					<div class="film" id="<%=film.getId()%>" onclick="document.getElementById('<%=film.getId()%>').submit();">
@@ -81,9 +117,12 @@
 				  					<input type="hidden" id="idArticle" name="idArticle" value="<%=film.getId()%>">
 			  					</div>
 			  					</form>
+			  					</li>
 				  			<%
-				  		}	
-			  		}
+				  		}
+			  			%>
+			  			</ul>
+			  	<% 	}}
 				%>
 		  	</div>
 		</div>

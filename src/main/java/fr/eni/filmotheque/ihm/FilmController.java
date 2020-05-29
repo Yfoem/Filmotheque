@@ -59,10 +59,9 @@ public class FilmController {
 		film = new Film();
 		film = filmManager.SelectById(id);
 		model.addAttribute("film", film);
-
-		
 		return "detailFilm";
 		
+
 
 	}
 
@@ -83,13 +82,14 @@ public class FilmController {
 		return "gestionFilms";
 	}
 
+
 	@RequestMapping(path = "/modifierFilm", method = RequestMethod.POST)
 	public String modifierFilm(@RequestParam(name = "titre") String titre,
 			@RequestParam(name = "categorie") Long categorie1, @RequestParam(name = "realisateur") Long realisateur,
 			@RequestParam(name = "annee") String annee, @RequestParam(name = "id") Long id, ModelMap model)
 			throws CategorieNonTrouveException, ParticipantNonTrouveException {
 
-		participants = participantManager.selectAllParticipant();
+
 		model.addAttribute("listeParticipants", participants);
 		categories = categorieManager.findAllCategories();
 		model.addAttribute("listeCategories", categories);
@@ -121,12 +121,13 @@ public class FilmController {
 		return "redirect:/app/gestionFilms";
 	}
 
+
 	@RequestMapping(path = "/ajouterFilm", method = RequestMethod.POST)
 	public String ajouterFilm(@RequestParam(name = "titre") String titre,
 			@RequestParam(name = "categorie") Long categorie1, @RequestParam(name = "realisateur") Long realisateur,
 			@RequestParam(name = "annee") String annee, ModelMap model) throws CategorieNonTrouveException, ParticipantNonTrouveException {
 
-		participants = participantManager.selectAllParticipant();
+
 		model.addAttribute("listeParticipants", participants);
 		categories = categorieManager.findAllCategories();
 		model.addAttribute("listeCategories", categories);
@@ -152,4 +153,7 @@ public class FilmController {
 		return "redirect:/app/gestionFilms";
 
 	}
+	
+	
+	
 }
