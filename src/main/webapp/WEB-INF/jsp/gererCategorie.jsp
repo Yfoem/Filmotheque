@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="fr.eni.filmotheque.bo.Film"%>
 <%@page import="fr.eni.filmotheque.bo.Categorie"%>
+<%@page import="fr.eni.filmotheque.bo.Membre"%>
     
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -14,9 +15,39 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+<div class="container-fluid header">
+			<div class="row header-text" onclick="">
+			    <div class="col">
+
+			    	<h2><a class="noLink" href="<%=request.getContextPath()%>">ENI-Filmothèque</a></h2>
+
+
+			    </div>
+			    <div class="col-6">
+			    </div>
+			    <div class="col login-section">
+			    <%
+			    	if(request.getSession().getAttribute("sessionUtilisateur") == null){
+			    		%>
+			    			<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/login"><input class="btn btn-success" type="button" value="Se Connecter"/></a>
+			    		<%
+			    	}else{
+			    		%>
+			    			<h3> <%=((Membre)request.getSession().getAttribute("sessionUtilisateur")).getPseudo()%></h3>
+			    			<a style="margin-left: 10px" href="<%=request.getContextPath()%>/app/Deconnexion"><input class="btn btn-danger" type="button" value="Déconnexion"/></a>
+			    		<%
+			    	}
+			    %>
+			      
+			    </div>
+		  	</div>
+		  	<br/>
+		  	<br/>
+		  	<br/>
+	
  <script src="../ressources/js/action.js"></script>
 <% if (request.getAttribute("cat") == null) {%>
-	<h1>Gestion des Catégories</h1>
+	<h1>Ajout d'une Catégorie</h1>
 	
 	<div>		
 		<p style="color:red">${error}</p>
@@ -33,26 +64,8 @@
 	<br>
 	<br>
 	<div>
-		<%
-		List<Categorie> listCategorie = (List<Categorie>) request.getAttribute("sessionCategorie");
-			if( listCategorie!= null){
-				%>
-				<h1> List des Catégories : </h1>
-				<%
-				for(Categorie cat : listCategorie){
-					
-		%>
-			   <a  href='<%=request.getServletContext().getContextPath() %>/app/vueModifierCategorie?id=<%= cat.getId() %>&label=<%= cat.getLibelle() %>' > <p><%= cat.getLibelle() %></p></a>
-			    
-			    
-		<%
-				}
-			}
-		%>
-	</div>
-	
-	<div>
 	<%
+	List<Categorie> listCategorie = (List<Categorie>) request.getAttribute("sessionCategorie");
 			if( listCategorie!= null){
 				%>
 		  <div class="input-group">
@@ -81,6 +94,7 @@
 	} else {
 		
 	%>
+	<h1>Gestion des Catégories</h1>
 		<div>		
 		<p style="color:red">${error}</p>
 		<form action="<%=request.getServletContext().getContextPath() %>/app/modifierCategorie" method="GET" >
@@ -99,5 +113,6 @@
 	<%
 				}
 		%>
+		</div>
 </body>
 </html>

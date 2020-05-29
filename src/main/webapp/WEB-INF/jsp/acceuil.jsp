@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="fr.eni.filmotheque.bo.Film"%>
@@ -12,7 +12,7 @@
 	<head>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 		<link rel="stylesheet" type="text/css" href="css/accueil.css">
-		<meta charset="ISO-8859-1">
+		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 		<title>Accueil</title>
 		<%
@@ -24,7 +24,7 @@
 			<div class="row header-text" onclick="">
 			    <div class="col">
 
-			    	<h2><a class="noLink" href="<%=request.getContextPath()%>">ENI-Filmothèque</a></h2>
+			    	<h2><a class="noLink" href="<%=request.getContextPath()%>">ENI-FilmothÃ¨que</a></h2>
 
 
 			    </div>
@@ -39,7 +39,7 @@
 			    	}else{
 			    		%>
 			    			<h3> <%=((Membre)request.getSession().getAttribute("sessionUtilisateur")).getPseudo()%></h3>
-			    			<a style="margin-left: 10px" href="<%=request.getContextPath()%>/app/Deconnexion"><input class="btn btn-danger" type="button" value="Déconnexion"/></a>
+			    			<a style="margin-left: 10px" href="<%=request.getContextPath()%>/app/Deconnexion"><input class="btn btn-danger" type="button" value="DÃ©connexion"/></a>
 			    		<%
 			    	}
 			    %>
@@ -52,9 +52,9 @@
 		  	 	<%
 			    	if(request.getSession().getAttribute("sessionUtilisateur") != null &&((Membre)request.getSession().getAttribute("sessionUtilisateur")).EstCreateur() == true ){
 			    %>
-			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/vueAjouterCategorie"><input class="btn btn-success" type="button" value="Gérer Catégories"/></a>
-			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/ajouterParticipant"><input class="btn btn-success" type="button" value="Gérer Participants"/></a>
-			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/ajouterFilm"><input class="btn btn-success" type="button" value="Gérer Films"/></a>
+			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/vueAjouterCategorie"><input class="btn btn-success" type="button" value="GÃ©rer CatÃ©gories"/></a>
+			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/ajouterParticipant"><input class="btn btn-success" type="button" value="GÃ©rer Participants"/></a>
+			    		<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/ajouterFilm"><input class="btn btn-success" type="button" value="GÃ©rer Films"/></a>
 			  			
 			  	
 			  	<% 
@@ -75,7 +75,7 @@
 			  					<div class="film" id="<%=film.getId()%>" onclick="document.getElementById('<%=film.getId()%>').submit();">
 				  					<h5 ><strong><%=film.getTitre()%></strong></h5>
 <%-- 				  					<p ><%=film.getCategorie().getLibelle()%></p> --%>
-<%-- 				  					<p>Année de sortie : <fmt:formatDate value="<%=film.getAnnee()%>" pattern="dd/MM/yyyy" /></p> --%>
+<%-- 				  					<p>AnnÃ©e de sortie : <fmt:formatDate value="<%=film.getAnnee()%>" pattern="dd/MM/yyyy" /></p> --%>
 				  					<input type="hidden" id="idArticle" name="idArticle" value="<%=film.getId()%>">
 			  					</div>
 			  					</form>
