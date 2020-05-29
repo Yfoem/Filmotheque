@@ -34,7 +34,6 @@
 			    	}else{
 			    		%>
 			    			<h3> <%=((Membre)request.getSession().getAttribute("sessionUtilisateur")).getPseudo()%></h3>
-			    			<a style="margin-left: 10px" href="<%=request.getContextPath()%>/app/Deconnexion"><input class="btn btn-danger" type="button" value="Déconnexion"/></a>
 			    		<%
 			    	}
 			    %>
@@ -44,6 +43,11 @@
 		  	<br/>
 		  	<br/>
 		  	<br/>
+		  	<div style="float:right;margin-right:100px">
+				<h4><a href="<%=request.getContextPath()%>/app/gestionFilms">Films</a></h4>
+				<h4><a href="<%=request.getContextPath()%>/app/vueAjouterCategorie">Catégories</a></h4>
+				<h4><a href="<%=request.getContextPath()%>/app/gestionParticipant">Participants</a></h4>
+			</div>
 	
  <script src="../ressources/js/action.js"></script>
 <% if (request.getAttribute("cat") == null) {%>

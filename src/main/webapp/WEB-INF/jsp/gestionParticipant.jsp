@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@page import="fr.eni.filmotheque.bo.Membre"%>
     
     <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="j" %>
 <!DOCTYPE html>
@@ -13,10 +14,37 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h2><a class="noLink" href="<%=request.getContextPath()%>">ENI-Filmothèque</a></h2>
+<div class="container-fluid header">
+			<div class="row header-text" onclick="">
+			    <div class="col">
+
+			    	<h2><a class="noLink" href="<%=request.getContextPath()%>">ENI-Filmothèque</a></h2>
+
+
+			    </div>
+			    <div class="col-6">
+			    </div>
+			    <div class="col login-section">
+			    <%
+			    	if(request.getSession().getAttribute("sessionUtilisateur") == null){
+			    		%>
+			    			<a style="color:#33FFAC;" href="<%=request.getContextPath()%>/app/login"><input class="btn btn-success" type="button" value="Se Connecter"/></a>
+			    		<%
+			    	}else{
+			    		%>
+			    			<h3> <%=((Membre)request.getSession().getAttribute("sessionUtilisateur")).getPseudo()%></h3>
+			    		<%
+			    	}
+			    %>
+			      
+			    </div>
+		  	</div>
+		  	<br/>
+		  	<br/>
+		  	<br/>
 <div style="float:right;margin-right:100px">
-<h4><a href="<%=request.getContextPath()%>/app/film">Films</a></h4>
-<h4><a href="<%=request.getContextPath()%>/app/categorie">Catégories</a></h4>
+<h4><a href="<%=request.getContextPath()%>/app/gestionFilms">Films</a></h4>
+<h4><a href="<%=request.getContextPath()%>/app/vueAjouterCategorie">Catégories</a></h4>
 <h4><a href="<%=request.getContextPath()%>/app/gestionParticipant">Participants</a></h4>
 </div>
 
@@ -82,6 +110,6 @@ else {
 </j:forEach>
 
 </table>
-
+</div>
 </body>
 </html>
